@@ -1,14 +1,20 @@
 import { useState } from 'react'
 import './App.css'
+import { SubmitButton } from './components/SubmitButton'
 
 function App() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [data, setData] = useState({ name: '', email: '' })
+
+  const handleSubmit = () => {
+    setData({ name, email })
+  }
 
   return (
     <>
       <h1>My First React Form</h1>
-      <form className="form">
+      <form id="form" className="form">
         <div className="input-fields">
           <label className="input-label">Name:</label>
           <input
@@ -26,9 +32,13 @@ function App() {
           />
         </div>
         <div>
-          <button className="submit-button" type="submit">Submit</button>
+          <SubmitButton handleSubmit={handleSubmit} />
         </div>
       </form>
+      <div className="output-box">
+        <span>{data.name}</span>
+        <span>{data.email}</span>
+      </div>
     </>
   )
 }
